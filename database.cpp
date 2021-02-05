@@ -7,7 +7,10 @@ Database::Database()
 
 void Database::Add(const Date& date, const string& event)
 {
-	database[date].insert(event);
+	auto &events = database[date];
+	if (count(events.begin(), events.end(), event) == 0){
+		events.push_back(event);
+	}
 }
 
 void Database::Print(ostream &out) const

@@ -25,5 +25,5 @@ public:
 	vector<pair<Date, string>> FindIf(function<bool(const Date &date, const string &event)>) const;
 	pair<const Date, string> Last(Date date);
 private:
-	map<Date, unordered_set<string>> database;
+	map<Date, vector<string>> database;
 };
