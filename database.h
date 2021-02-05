@@ -3,9 +3,10 @@
 #include <iostream>
 #include <memory>
 #include <map>
-#include <set>
+#include <unordered_set>
 #include <string>
 #include <functional>
+#include <vector>
 #include <utility>
 
 #include "node.h"
@@ -21,8 +22,8 @@ public:
 	void Add(const Date &date, const string &event);
 	void Print(ostream &out) const;
 	int RemoveIf(function<bool(const Date &date, const string &event)>);
-	map<Date, set<string>> FindIf(function<bool(const Date &date, const string &event)>) const;
+	vector<pair<Date, string>> FindIf(function<bool(const Date &date, const string &event)>) const;
 	pair<const Date, string> Last(Date date);
 private:
-	map<Date, set<string>> database;
+	map<Date, unordered_set<string>> database;
 };

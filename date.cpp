@@ -117,7 +117,7 @@ Date ParseDate(istringstream &date_stream)
 				throw runtime_error("Wrong date format (month): " + date_string);
 			}
 			if (date_stream >> day){
-					if(date_stream.peek() != ' '){
+					if(!date_stream.eof() && date_stream.peek() != ' '){
 							throw runtime_error("Wrong date format (day): " + date_string);
 					} else {
 							date_stream.ignore(1);

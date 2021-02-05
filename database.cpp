@@ -20,8 +20,20 @@ void Database::Print(ostream &out) const
 		}
 	}
 }
+vector<pair<Date, string>> Database::FindIf(function<bool(const Date &date, const string &event)> predicate) const
+{
+	vector<pair<Date, string>> res;
+	for (const auto &record : database){
+		for (const auto &event : record.second){
+			if (predicate(record.first, event)){
+				res.push_back(make_pair(record.first, event));
+			}
+		}
+	}
+	return res;
+}
 
-ostream& operator<<(ostream &stream, const pair<const Date, string> &event)
+ostream& operator<<(ostream &stream, pair<Date, string> event)
 {
 	stream << event.first << " " << event.second;
 	return stream;
