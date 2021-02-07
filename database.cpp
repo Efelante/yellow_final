@@ -13,6 +13,20 @@ void Database::Add(const Date& date, const string& event)
 	}
 }
 
+string Database::Last(Date date)
+{
+	ostringstream os;
+	auto upper_bound_date = database.upper_bound(date);
+	if (upper_bound_date == database.begin()){
+		os << "No entries" << endl;
+	} else {
+		const auto &res_date = prev(upper_bound_date);
+		const auto &event = (res_date->second)[res_date->second.size() - 1]; 
+		os << res_date->first << " " << event;
+	}
+	return os.str();
+}
+
 void Database::Print(ostream &out) const
 {
 	for (const auto &record : database){

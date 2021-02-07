@@ -54,7 +54,7 @@ int main() {
       cout << "Found " << entries.size() << " entries" << endl;
     } else if (command == "Last") {
       try {
-          //cout << db.Last(ParseDate(is)) << endl;
+          cout << db.Last(ParseDate(is)) << endl;
       } catch (invalid_argument&) {
           cout << "No entries" << endl;
       }
