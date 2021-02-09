@@ -1,4 +1,8 @@
 #include "database.h"
+#include <algorithm>
+#include <string>
+
+using namespace std;
 
 Database::Database()
 {
@@ -46,6 +50,19 @@ vector<pair<Date, string>> Database::FindIf(function<bool(const Date &date, cons
 				res.push_back(make_pair(record.first, event));
 			}
 		}
+	}
+	return res;
+}
+
+int Database::RemoveIf(function<bool(const Date &date, const string &event)> predicate)
+{
+	int res = 0;
+	for (auto &event_pair: database){
+		auto _date = event_pair.first;
+		auto events = event_pair.second;
+		auto remove_it = remove_if(events.begin(), events.end(), [_date, predicate](const string &ev){return predicate(_date, ev);});
+		res += events.end() - remove_it;
+		events.erase(remove_it, events.end());
 	}
 	return res;
 }
