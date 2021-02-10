@@ -57,12 +57,12 @@ vector<pair<Date, string>> Database::FindIf(function<bool(const Date &date, cons
 int Database::RemoveIf(function<bool(const Date &date, const string &event)> predicate)
 {
 	int res = 0;
-	for (auto &event_pair: database){
-		auto _date = event_pair.first;
-		auto events = event_pair.second;
-		auto remove_it = remove_if(events.begin(), events.end(), [_date, predicate](const string &ev){return predicate(_date, ev);});
-		res += events.end() - remove_it;
-		events.erase(remove_it, events.end());
+	for (auto &record: database){
+		auto &_date = record.first;
+		auto &_events = record.second;
+		auto remove_it = remove_if(_events.begin(), _events.end(), [_date, predicate](const string &e){return predicate(_date, e);});
+		res += _events.end() - remove_it;
+		_events.erase(remove_it, _events.end());
 	}
 	return res;
 }
