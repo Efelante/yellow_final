@@ -7,21 +7,21 @@
 using namespace std;
 
 struct Year {
-	explicit Year(int new_year){
+	Year(int new_year){
 		value = new_year;
 	}
 	int value;
 };
 
 struct Month {
-	explicit Month(int new_month){
+	Month(int new_month){
 		value = new_month;
 	}
 	int value;
 };
 
 struct Day {
-	explicit Day(int new_day){
+	Day(int new_day){
 		value = new_day;
 	}
 	int value;
@@ -37,6 +37,11 @@ public:
 		month = new_month.value;
 		day = new_day.value;
 	}
+	//Date (int new_year, int new_month, int new_day){
+	//	year = new_year;	
+	//	month = new_month;
+	//	day = new_day;
+	//}
 	int GetYear() const {return year;};
 	int GetMonth() const {return month;};
 	int GetDay() const {return day;};

@@ -2,7 +2,7 @@
 #include "date.h"
 #include "condition_parser.h"
 #include "node.h"
-//#include "test_runner.h"
+#include "test_runner.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -12,14 +12,14 @@ using namespace std;
 
 string ParseEvent(istream& is) {
   string event;
-  getline(is, event);
+  getline(is >> ws, event);
   return event;
 }
 
-//void TestAll();
+void TestAll();
 
 int main() {
-  //TestAll();
+  TestAll();
 
   Database db;
 
@@ -67,7 +67,7 @@ int main() {
 
   return 0;
 }
-/*
+
 void TestParseEvent() {
   {
     istringstream is("event");
@@ -91,4 +91,4 @@ void TestAll() {
   tr.RunTest(TestParseEvent, "TestParseEvent");
   tr.RunTest(TestParseCondition, "TestParseCondition");
 }
-*/
+
