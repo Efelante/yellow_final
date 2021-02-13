@@ -94,7 +94,7 @@ void CheckDay(int day)
 	}
 }
 
-Date ParseDate(istringstream &date_stream)
+Date ParseDate(istream &date_stream)
 {
 	int year;
 	int month;

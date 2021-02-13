@@ -59,4 +59,4 @@ bool operator==(const Date& lhs, const Date& rhs);
 bool operator!=(const Date& lhs, const Date& rhs);
 istream& operator>>(istream &stream, Date &date);
 ostream& operator<<(ostream &stream, const Date &date);
-Date ParseDate(istringstream &is);
+Date ParseDate(istream &is);
