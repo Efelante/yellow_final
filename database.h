@@ -23,7 +23,7 @@ public:
 	void Print(ostream &out) const;
 	int RemoveIf(function<bool(const Date &date, const string &event)>);
 	vector<pair<Date, string>> FindIf(function<bool(const Date &date, const string &event)>) const;
-	string Last(Date date);
+	string Last(Date date) const;
 private:
 	map<Date, vector<string>> database;
 };

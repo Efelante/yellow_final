@@ -67,7 +67,7 @@ ostream& operator<<(ostream &stream, const Date &date)
 	return stream;
 }
 
-void CheckDelimeterAndSkip(istringstream &stream)
+void CheckDelimeterAndSkip(istream &stream)
 {
 	if (stream.peek() != '-'){
 		throw runtime_error("Wrong date format: ");
@@ -99,28 +99,30 @@ Date ParseDate(istream &date_stream)
 	int year;
 	int month;
 	int day;
-	string date_string = date_stream.str();
-	if (date_stream >> year){
+	string date_string;
+	date_stream >> date_string;
+	istringstream is(date_string);
+	if (is >> year){
 		// Year is a number
 		// Read month and day
 		try {
-			CheckDelimeterAndSkip(date_stream);
+			CheckDelimeterAndSkip(is);
 		} catch (exception &e) {
-			throw runtime_error("Wrong date format (year): " + date_string);
+			throw runtime_error("Wrong date format: " + date_string);
 		}
-		if (date_stream >> month){
+		if (is >> month){
 			// Month is a number
 			// Read the day
 			try {
-				CheckDelimeterAndSkip(date_stream);
+				CheckDelimeterAndSkip(is);
 			} catch (exception &e) {
-				throw runtime_error("Wrong date format (month): " + date_string);
+				throw runtime_error("Wrong date format: " + date_string);
 			}
-			if (date_stream >> day){
-					if(!date_stream.eof() && date_stream.peek() != ' '){
-							throw runtime_error("Wrong date format (day): " + date_string);
+			if (is >> day){
+					if(!is.eof() && is.peek() != ' '){
+							throw runtime_error("Wrong date format: " + date_string);
 					} else {
-							date_stream.ignore(1);
+							is.ignore(1);
 							CheckMonth(month);
 							CheckDay(day);
 							return Date(Year(year),
